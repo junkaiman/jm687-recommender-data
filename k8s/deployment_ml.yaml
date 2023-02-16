@@ -1,36 +1,36 @@
-apiVersion: apps/v1
-kind: Deployment
-metadata:
-  name: jm687-recommender-ml-deployment
-spec:
-  replicas: 1
-  selector:
-    matchLabels:
-      app: jm687-recommender-ml
-  template:
-    metadata:
-      labels:
-        app: jm687-recommender-ml
-    spec:
-      volumes:
-      - name: project2-pv-jm687
-        persistentVolumeClaim:
-          claimName: project2-pvc-jm687
-      containers:
-      - name: jm687-recommender-ml-container
-        image: quay.io/junkaiman/jm687-recommender-ml:0.1
-        imagePullPolicy: Always
-        volumeMounts:
-          - name: project2-pv-jm687
-            mountPath: /app/data
-        env:
-          - name: VERBOSE
-            value: "True"
-          - name: SAVE_MODEL
-            value: "True"
-          - name: VERSION
-            value: "0.1"
-          - name: DATASET_PATH
-            value: "http://raw.githubusercontent.com/junkaiman/jm687-recommender-data/main/playlist-sample-ds1.csv"
-          - name: MODEL_DIR
-            value: "/app/data/models"
+# apiVersion: apps/v1
+# kind: Deployment
+# metadata:
+#   name: jm687-recommender-ml-deployment
+# spec:
+#   replicas: 1
+#   selector:
+#     matchLabels:
+#       app: jm687-recommender-ml
+#   template:
+#     metadata:
+#       labels:
+#         app: jm687-recommender-ml
+#     spec:
+#       volumes:
+#       - name: project2-pv-jm687
+#         persistentVolumeClaim:
+#           claimName: project2-pvc-jm687
+#       containers:
+#       - name: jm687-recommender-ml-container
+#         image: quay.io/junkaiman/jm687-recommender-ml:0.1
+#         imagePullPolicy: Always
+#         volumeMounts:
+#           - name: project2-pv-jm687
+#             mountPath: /app/data
+#         env:
+#           - name: VERBOSE
+#             value: "True"
+#           - name: SAVE_MODEL
+#             value: "True"
+#           - name: VERSION
+#             value: "0.1"
+#           - name: DATASET_PATH
+#             value: "http://raw.githubusercontent.com/junkaiman/jm687-recommender-data/main/playlist-sample-ds1.csv"
+#           - name: MODEL_DIR
+#             value: "/app/data/models"
