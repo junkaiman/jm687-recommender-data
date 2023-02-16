@@ -23,6 +23,6 @@ spec:
         - name: VERSION
           value: "0.1"
         - name: DATASET_PATH
-          value: "http://raw.githubusercontent.com/junkaiman/jm687-recommender-data/main/playlist-sample-ds2.csv"
+          value: "http://raw.githubusercontent.com/junkaiman/jm687-recommender-data/main/playlist-sample-ds1.csv"
         - name: MODEL_DIR
           value: "/app/data/models"
