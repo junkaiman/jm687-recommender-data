@@ -1,0 +1,17 @@
+name: Download dataset files
+on:
+  schedule:
+    - cron: "0 0 * * *"
+jobs:
+  download:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Download playlist-sample-ds1.csv
+        run: |
+          curl -o playlist-sample-ds1.csv https://homepages.dcc.ufmg.br/~cunha/hosted/compsci401-s3-23-datasets/playlist-sample-ds1.csv
+      - name: Download playlist-sample-ds2.csv
+        run: |
+          curl -o playlist-sample-ds2.csv https://homepages.dcc.ufmg.br/~cunha/hosted/compsci401-s3-23-datasets/playlist-sample-ds2.csv
+      - name: Download songs.csv
+        run: |
+          curl -o songs.csv https://homepages.dcc.ufmg.br/~cunha/hosted/compsci401-s3-23-datasets/songs.csv
