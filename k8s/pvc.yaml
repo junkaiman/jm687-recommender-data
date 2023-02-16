@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  namespace: jm687
+  name: project2-pvc-jm687
+spec:
+  storageClassName: standard
+  volumeName: project2-pv-jm687
+  accessModes:
+    - ReadWriteMany
+  resources:
+    requests:
+      storage: 1Gi

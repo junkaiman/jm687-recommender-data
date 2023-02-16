@@ -1,0 +1,50 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: jm687-recommender-web-deployment
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: jm687-recommender-web
+  template:
+    metadata:
+      labels:
+        app: jm687-recommender-web
+    spec:
+      volumes:
+      - name: project2-pv-jm687
+        persistentVolumeClaim:
+          claimName: project2-pvc-jm687
+      containers:
+      - name: jm687-recommender-backend-container
+        image: quay.io/junkaiman/jm687-recommender-backend:0.1
+        imagePullPolicy: Always
+        volumeMounts:
+          - name: project2-pv-jm687
+            mountPath: /app/data
+        env:
+          - name: HOST
+            value: "0.0.0.0"
+          - name: PORT
+            value: "30503"
+          - name: VERBOSE
+            value: "True"
+          - name: MODEL_PATH
+            value: "/app/data/models/model@0.1.pkl"
+          - name: DATASET_PATH
+            value: "http://raw.githubusercontent.com/junkaiman/jm687-recommender-data/main/playlist-sample-ds1.csv"
+        ports: 
+          - containerPort: 30503
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: jm687-recommender-web-service
+spec:
+  selector:
+    app: jm687-recommender-web
+  ports:
+    - protocol: TCP
+      port: 30503
+      targetPort: 30503
