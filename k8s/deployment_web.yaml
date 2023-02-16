@@ -18,7 +18,7 @@ spec:
           claimName: project2-pvc-jm687
       containers:
       - name: jm687-recommender-backend-container
-        image: quay.io/junkaiman/jm687-recommender-backend:0.1
+        image: quay.io/junkaiman/jm687-recommender-backend:0.2
         imagePullPolicy: Always
         volumeMounts:
           - name: project2-pv-jm687
@@ -31,9 +31,9 @@ spec:
           - name: VERBOSE
             value: "True"
           - name: MODEL_PATH
-            value: "/app/data/models/model@0.1.pkl"
+            value: "/app/data/models/model@0.2.pkl"
           - name: DATASET_PATH
-            value: "http://raw.githubusercontent.com/junkaiman/jm687-recommender-data/main/playlist-sample-ds1.csv"
+            value: "http://raw.githubusercontent.com/junkaiman/jm687-recommender-data/main/playlist-sample-ds2.csv"
         ports: 
           - containerPort: 30503
 ---
