@@ -9,12 +9,24 @@ jobs:
   download:
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
       - name: Download playlist-sample-ds1.csv
         run: |
-          curl -o -k playlist-sample-ds1.csv http://homepages.dcc.ufmg.br/~cunha/hosted/compsci401-s3-23-datasets/playlist-sample-ds1.csv
+          curl -o -k playlist-sample-ds1.csv https://homepages.dcc.ufmg.br/~cunha/hosted/compsci401-s3-23-datasets/playlist-sample-ds1.csv
       - name: Download playlist-sample-ds2.csv
         run: |
-          curl -o -k playlist-sample-ds2.csv http://homepages.dcc.ufmg.br/~cunha/hosted/compsci401-s3-23-datasets/playlist-sample-ds2.csv
+          curl -o -k playlist-sample-ds2.csv https://homepages.dcc.ufmg.br/~cunha/hosted/compsci401-s3-23-datasets/playlist-sample-ds2.csv
       - name: Download songs.csv
         run: |
-          curl -o -k songs.csv http://homepages.dcc.ufmg.br/~cunha/hosted/compsci401-s3-23-datasets/songs.csv
+          curl -o -k songs.csv https://homepages.dcc.ufmg.br/~cunha/hosted/compsci401-s3-23-datasets/songs.csv
+      - name: Upload downloaded files as artifacts
+        uses: actions/upload-artifact@v2
+        with:
+          name: downloaded-files
+          path: |
+            playlist-sample-ds1.csv
+            playlist-sample-ds2.csv
+            songs.csv
